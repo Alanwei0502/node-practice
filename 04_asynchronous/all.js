@@ -44,7 +44,7 @@ function correctHomework(name) {
       } else {
         reject({ score, name, isPass: 'Failed!' });
       }
-    }, 1000);
+    }, Math.random() * 1000);
   });
 }
 
@@ -97,3 +97,21 @@ function fail(data) {
 //   }
 // }
 // init();
+
+// Promise.all
+function correctTest(name) {
+  return new Promise((resolve, reject) => {
+    console.log('Correcting homework...');
+    setTimeout(() => {
+      const score = Math.round(Math.random() * 100);
+      resolve({ score, name });
+    }, Math.random() * 1000);
+  });
+}
+Promise.all([
+  correctTest('Alan'),
+  correctTest('Abby'),
+  correctTest('Tina'),
+]).then((data) => {
+  console.log({ data });
+});
